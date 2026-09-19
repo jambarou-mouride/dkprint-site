@@ -96,7 +96,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .carte__media { background: #f1ebe2; }
-.carte__media img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.carte__media img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
 
 .carte__corps { padding: 16px; display: flex; flex-direction: column; flex: 1; }
 
@@ -341,7 +341,7 @@ a:focus-visible, .bouton:focus-visible {
   border-radius: var(--rayon);
   overflow: hidden;
 }
-.galerie__item img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.galerie__item img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
 .galerie__legende { display: block; padding: 8px 10px; font-size: 14px; font-weight: 600; }
 
 /* --- Questions fréquentes ----------------------------------------------- */

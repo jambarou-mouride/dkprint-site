@@ -71,15 +71,26 @@ les pages, s'y alimentent. Pensez aussi au bloc `<noscript>` de la section
 Si `WHATSAPP` contient encore un `X`, un bandeau d'avertissement s'affiche en
 haut des pages. Il disparaît de lui-même une fois le numéro renseigné.
 
-## À compléter
+## Les images
 
-Il ne reste que les images. Toutes sont des dessins provisoires :
+Les photos fournies ont été recadrées au format 4/5 (vertical, adapté aux
+vêtements sur cintre), leur liseré rouge retiré, et réencodées en WebP.
+Chacune pèse moins de 20 Ko.
 
-- les quatre visuels produits du catalogue (`img/tshirt.svg`, `polo.svg`,
-  `sweat.svg`, `casquette.svg`) ;
-- les quatre vignettes de réalisations sur l'accueil, qui pointent toutes
-  vers `img/realisation.svg`. Donnez à chacune sa propre photo en modifiant
-  les `src` dans `index.html`.
+| Fichier | Où |
+|---|---|
+| `tshirt.webp` | Carte t-shirt du catalogue |
+| `realisation-veste.webp` | Galerie de l'accueil |
+| `realisation-tshirt-gris.webp` | Galerie de l'accueil |
+| `realisation-tshirt-bordeaux.webp` | Galerie de l'accueil |
+| `realisation-tshirt-kaki.webp` | Galerie de l'accueil |
+
+**Il manque encore les photos du polo, du sweat et de la casquette** :
+ces trois cartes affichent toujours un dessin provisoire. Déposez la photo
+dans `img/` et changez la ligne `photo:` du produit dans `js/catalogue.js`.
+
+Pour préparer une photo : format vertical 4/5, 800 × 1000 px pour une carte
+produit, 600 × 750 px pour une vignette de réalisation, en WebP.
 
 Les coordonnées, le délai et l'acompte sont renseignés.
 

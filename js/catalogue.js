@@ -30,7 +30,7 @@ var PRODUITS = [
     nom: 'T-shirt coton 180g',
     description: 'Coton peigné 180 g/m², coupe droite. La valeur sûre pour les tenues d’équipe et l’événementiel.',
     prix: 4500,
-    photo: 'img/tshirt.svg',
+    photo: 'img/tshirt.webp',
     tailles: ['S', 'M', 'L', 'XL', 'XXL'],
     couleurs: [
       { nom: 'Blanc',      hex: '#ffffff' },
@@ -115,7 +115,7 @@ function carteProduit(produit, index) {
   img.src = produit.photo;
   img.alt = produit.nom + ' personnalisable par DK Print';
   img.width = 800;
-  img.height = 600;
+  img.height = 1000;
   /* Les deux premières images sont visibles d'emblée, les suivantes
      ne se chargent qu'au défilement : économie de données en mobile. */
   img.loading = index < 2 ? 'eager' : 'lazy';
