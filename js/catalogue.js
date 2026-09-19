@@ -146,7 +146,7 @@ function messageConfiguration(produit, choix) {
   if (choix.logo) {
     lignes.push('Visuel : je vous fournis mon logo');
   } else if (choix.texte) {
-    lignes.push('Texte à floquer : « ' + choix.texte + ' »');
+    lignes.push('Texte à floquer : ' + citer(choix.texte));
   }
   lignes.push('');
 
@@ -155,6 +155,7 @@ function messageConfiguration(produit, choix) {
   lignes.push('Total estimé : ' + formatPrix(calcul.total));
   lignes.push('');
   lignes.push('Je vous envoie mon visuel juste après dans cette conversation.');
+  lignes.push('Merci d\u2019avance, et bonne journée.');
   return lignes.join('\n');
 }
 

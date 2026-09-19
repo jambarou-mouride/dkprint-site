@@ -128,6 +128,23 @@ Deux photos méritent d'être refaites quand vous en aurez l'occasion :
   produit a été mise en accord. Si vous vendez aussi un sweat à col rond, il
   faudra une seconde fiche.
 
+## Tout passe par WhatsApp
+
+Le site n'envoie jamais rien nulle part. Pas d'adresse e-mail, pas de
+`mailto:`, aucune soumission de données, aucun serveur. La page de
+commande n'est même pas un `<form>` : c'est un simple `<div>`, pour
+qu'aucune soumission ne soit possible, y compris par la touche Entrée.
+
+La demande part uniquement quand le client clique sur « Commander sur
+WhatsApp ». Le lien suit le format officiel `https://wa.me/<numéro>?text=…`,
+le message étant encodé avec `encodeURIComponent()`, ce qui gère les
+accents, les espaces, les guillemets français et les retours à la ligne.
+Vérifié sur ordinateur, sur iPhone et sur Android.
+
+Le message contient le produit, la taille, la couleur, la quantité,
+l'emplacement du flocage, le texte demandé ou la mention d'un logo
+fourni, le prix total calculé, et une formule de politesse.
+
 ## Le visuel du client
 
 La page de commande affiche un aperçu du fichier choisi et prévient si

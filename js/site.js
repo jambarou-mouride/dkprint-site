@@ -48,6 +48,13 @@ function pieces(n) {
   return n + ' pièce' + (n > 1 ? 's' : '');
 }
 
+/* Encadre un texte de guillemets français, sauf s'il en porte déjà :
+   « « Ndakaru » » se lit mal. */
+function citer(texte) {
+  if (texte.indexOf('\u00AB') !== -1 || texte.indexOf('\u00BB') !== -1) { return texte; }
+  return '\u00AB ' + texte + ' \u00BB';
+}
+
 function elem(balise, classe, texte) {
   var n = document.createElement(balise);
   if (classe) { n.className = classe; }

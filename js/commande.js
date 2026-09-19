@@ -128,6 +128,7 @@ function lireArticles() {
     if (total > 0) {
       var select = document.querySelector('[data-couleur="' + produit.id + '"]');
       resultat.push({
+        produit: produit,
         nom: produit.nom,
         couleur: select ? select.value : '',
         lignes: lignes,
@@ -154,10 +155,18 @@ function dateEnFrancais(valeurISO) {
 function lireCommande() {
   var articles = lireArticles();
   var total = 0;
-  articles.forEach(function (a) { total += a.total; });
+  var montant = 0;
+  articles.forEach(function (a) {
+    total += a.total;
+    /* Le palier s'apprécie article par article, comme sur les fiches
+       produits : dix t-shirts et dix polos donnent deux fois la remise. */
+    a.calcul = calculer(a.produit, a.total);
+    montant += a.calcul.total;
+  });
   return {
     articles: articles,
     totalPieces: total,
+    montant: montant,
     emplacements: lireEmplacements(),
     texte: valeur('texte-flocage'),
     couleurFlocage: valeur('couleur-flocage'),
@@ -176,7 +185,8 @@ function decrireArticle(article) {
     return l.taille + ' × ' + l.nombre;
   }).join(', ');
   var titre = article.nom + (article.couleur ? ' – ' + article.couleur : '');
-  return '- ' + titre + ' : ' + tailles + ' (' + pieces(article.total) + ')';
+  return '- ' + titre + ' : ' + tailles + ' (' + pieces(article.total) + ')' +
+         ' — ' + formatPrix(article.calcul.total);
 }
 
 function messageCommande(commande) {
@@ -185,11 +195,12 @@ function messageCommande(commande) {
   lignes.push('ARTICLES');
   commande.articles.forEach(function (a) { lignes.push(decrireArticle(a)); });
   lignes.push('Total : ' + pieces(commande.totalPieces));
+  lignes.push('Total estimé : ' + formatPrix(commande.montant));
   lignes.push('');
 
   lignes.push('FLOCAGE');
   lignes.push('Emplacement : ' + (commande.emplacements.length ? commande.emplacements.join(' + ') : 'à définir ensemble'));
-  if (commande.texte)          { lignes.push('Texte à floquer : « ' + commande.texte + ' »'); }
+  if (commande.texte)          { lignes.push('Texte à floquer : ' + citer(commande.texte)); }
   if (commande.couleurFlocage) { lignes.push('Couleur du flocage : ' + commande.couleurFlocage); }
   lignes.push('');
 
@@ -202,6 +213,7 @@ function messageCommande(commande) {
   }
 
   lignes.push('Je vous envoie mon visuel juste après dans cette conversation.');
+  lignes.push('Merci d\u2019avance, et bonne journée.');
   return lignes.join('\n');
 }
 
@@ -252,11 +264,23 @@ function majRecap() {
     zone.appendChild(ligneRecap(a.nom + (a.couleur ? ' – ' + a.couleur : ''), tailles));
   });
   zone.appendChild(ligneRecap('Total', pieces(commande.totalPieces)));
+  commande.articles.forEach(function (a) {
+    if (a.calcul.palier.remise > 0) {
+      zone.appendChild(ligneRecap(
+        a.nom + ' — remise ' + a.calcul.palier.remise + ' %',
+        '−' + formatPrix(a.calcul.remise)));
+    }
+  });
   if (commande.emplacements.length) {
     zone.appendChild(ligneRecap('Emplacement', commande.emplacements.join(' + ')));
   }
-  if (commande.texte) { zone.appendChild(ligneRecap('Texte', '« ' + commande.texte + ' »')); }
+  if (commande.texte) { zone.appendChild(ligneRecap('Texte', citer(commande.texte))); }
   if (commande.date)  { zone.appendChild(ligneRecap('Pour le', commande.date)); }
+
+  var prix = elem('div', 'prix-total');
+  prix.appendChild(elem('span', 'prix-total__mention', 'Total estimé'));
+  prix.appendChild(elem('strong', 'prix-total__montant', formatPrix(commande.montant)));
+  zone.appendChild(prix);
 
   bouton.className = 'bouton bouton--commande';
   bouton.setAttribute('aria-disabled', 'false');
@@ -348,7 +372,6 @@ function preparerCommande() {
 
   formulaire.addEventListener('input', majRecap);
   formulaire.addEventListener('change', majRecap);
-  formulaire.addEventListener('submit', function (e) { e.preventDefault(); });
 
   var fichier = document.getElementById('fichier-visuel');
   if (fichier) {
