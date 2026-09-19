@@ -1,0 +1,234 @@
+/* =========================================================================
+   DK Print — feuille de style unique
+   Les couleurs de la marque sont regroupées ci-dessous : changez-les ici
+   et tout le site suit.
+   ========================================================================= */
+
+:root {
+  --encre:       #14202e;   /* texte et aplats sombres   */
+  --encre-doux:  #55636f;   /* texte secondaire          */
+  --accent:      #d2551f;   /* orange DK Print           */
+  --accent-fonce:#a83f13;
+  --whatsapp:    #1d8c4c;
+  --fond:        #faf7f3;   /* fond de page              */
+  --carte:       #ffffff;
+  --trait:       #e5ded5;
+  --rayon:       12px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--fond);
+  color: var(--encre);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-text-size-adjust: 100%;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+.conteneur {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* --- En-tête ----------------------------------------------------------- */
+
+.entete {
+  background: var(--encre);
+  color: #fff;
+}
+
+.entete__barre {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.logo { text-decoration: none; color: #fff; display: block; }
+.logo__marque { display: block; font-size: 21px; font-weight: 700; letter-spacing: .02em; }
+.logo__metier { display: block; font-size: 12px; color: #a9b6c2; text-transform: uppercase; letter-spacing: .08em; }
+
+.nav { display: flex; gap: 18px; }
+.nav a { color: #cdd8e2; text-decoration: none; font-size: 15px; padding: 4px 0; }
+.nav a:hover, .nav a:focus { color: #fff; }
+.nav__actif { color: #fff; font-weight: 600; box-shadow: inset 0 -2px 0 var(--accent); }
+
+/* --- Titres de page ---------------------------------------------------- */
+
+.titre-page {
+  font-size: 30px;
+  line-height: 1.2;
+  margin: 28px 0 10px;
+}
+
+.chapo {
+  margin: 0 0 24px;
+  color: var(--encre-doux);
+  max-width: 62ch;
+}
+
+/* --- Grille de produits ------------------------------------------------ */
+
+.grille {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  margin-bottom: 32px;
+}
+
+.carte {
+  background: var(--carte);
+  border: 1px solid var(--trait);
+  border-radius: var(--rayon);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.carte__media { background: #f1ebe2; }
+.carte__media img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+
+.carte__corps { padding: 16px; display: flex; flex-direction: column; flex: 1; }
+
+.carte__nom { margin: 0 0 6px; font-size: 20px; }
+.carte__desc { margin: 0 0 14px; font-size: 15px; color: var(--encre-doux); }
+
+/* Prix de départ */
+.carte__depart {
+  margin: 0 0 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--trait);
+}
+.carte__depart-mention { display: block; font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--encre-doux); }
+.carte__depart-prix { font-size: 27px; font-weight: 700; color: var(--accent-fonce); }
+.carte__depart-unite { font-size: 15px; color: var(--encre-doux); margin-left: 6px; }
+
+/* Paliers dégressifs */
+.paliers { list-style: none; margin: 0 0 16px; padding: 0; font-size: 15px; }
+.paliers__ligne {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 6px 0;
+  border-bottom: 1px dotted var(--trait);
+}
+.paliers__ligne:last-child { border-bottom: 0; }
+.paliers__qte { color: var(--encre-doux); }
+.paliers__prix { font-weight: 600; white-space: nowrap; }
+.paliers__remise {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: #fdeee6;
+  color: var(--accent-fonce);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Tailles et couleurs */
+.bloc { margin-bottom: 14px; }
+.bloc__titre {
+  margin: 0 0 7px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--encre-doux);
+  font-weight: 700;
+}
+
+.puces { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; }
+.puce {
+  border: 1px solid var(--trait);
+  border-radius: 6px;
+  padding: 3px 10px;
+  font-size: 14px;
+  background: #fbf8f4;
+}
+
+.couleurs { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 12px; margin: 0; padding: 0; }
+.couleur { display: flex; align-items: center; gap: 6px; font-size: 14px; }
+.couleur__pastille {
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  border: 1px solid rgba(20, 32, 46, .28);
+  flex: none;
+}
+
+/* --- Boutons ----------------------------------------------------------- */
+
+.bouton {
+  display: block;
+  margin-top: auto;
+  padding: 13px 18px;
+  border-radius: 9px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+}
+.bouton--commande { background: var(--whatsapp); color: #fff; }
+.bouton--commande:hover, .bouton--commande:focus { background: #176e3c; }
+
+a:focus-visible, .bouton:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* --- Encarts ----------------------------------------------------------- */
+
+.note {
+  background: #fff;
+  border: 1px solid var(--trait);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--rayon);
+  padding: 16px 18px;
+  margin-bottom: 36px;
+}
+.note__titre { margin: 0 0 8px; font-size: 17px; }
+.note__liste { margin: 0; padding-left: 20px; font-size: 15px; color: var(--encre-doux); }
+.note__liste li { margin-bottom: 4px; }
+
+.avis-config {
+  background: #fff6e5;
+  border: 1px dashed #d9a33a;
+  border-radius: 9px;
+  padding: 12px 14px;
+  font-size: 15px;
+  margin: 0 0 18px;
+}
+
+.tableau-repli { border-collapse: collapse; width: 100%; font-size: 15px; margin-bottom: 28px; }
+.tableau-repli caption { text-align: left; padding-bottom: 8px; color: var(--encre-doux); }
+.tableau-repli th, .tableau-repli td { border: 1px solid var(--trait); padding: 8px 10px; text-align: left; }
+.tableau-repli thead th { background: #f1ebe2; }
+
+/* --- Pied de page ------------------------------------------------------ */
+
+.pied {
+  background: var(--encre);
+  color: #b8c4cf;
+  padding: 22px 0;
+  font-size: 14px;
+}
+.pied__marque { margin: 0 0 4px; color: #fff; font-weight: 600; }
+.pied__mention { margin: 0; }
+
+/* --- À partir de 720 px ------------------------------------------------ */
+
+@media (min-width: 720px) {
+  .grille { grid-template-columns: 1fr 1fr; gap: 22px; }
+  .titre-page { font-size: 38px; margin-top: 36px; }
+}

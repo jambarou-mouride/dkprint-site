@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catalogue et tarifs — DK Print, flocage textile à Dakar</title>
+<meta name="description" content="T-shirts, polos, sweats et casquettes personnalisés par flocage à Dakar. Tarifs dégressifs à partir de 10 et 50 pièces. Devis sur WhatsApp.">
+<meta property="og:title" content="Catalogue et tarifs — DK Print">
+<meta property="og:description" content="Flocage textile à Dakar. T-shirts à partir de 4 500 FCFA, tarifs dégressifs dès 10 pièces.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="entete">
+  <div class="conteneur entete__barre">
+    <a class="logo" href="index.html">
+      <span class="logo__marque">DK&nbsp;Print</span>
+      <span class="logo__metier">Flocage textile · Dakar</span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="index.html">Accueil</a>
+      <a class="nav__actif" href="catalogue.html" aria-current="page">Catalogue</a>
+      <a href="commander.html">Commander</a>
+    </nav>
+  </div>
+</header>
+
+<main class="conteneur">
+
+  <h1 class="titre-page">Catalogue et tarifs</h1>
+  <p class="chapo">
+    Tous nos textiles sont personnalisés dans notre atelier à Dakar, par transfert à chaud.
+    Les prix ci-dessous comprennent le textile et le flocage, et baissent automatiquement
+    selon la quantité commandée.
+  </p>
+
+  <div id="catalogue" class="grille"></div>
+
+  <noscript>
+    <p class="avis-config">
+      Cette page a besoin de JavaScript pour afficher le catalogue complet.
+      Voici nos tarifs par pièce, textile et flocage compris :
+    </p>
+    <!-- Repli sans JavaScript. Si vous modifiez un prix dans js/catalogue.js,
+         pensez à le reporter ici. -->
+    <table class="tableau-repli">
+      <caption>Prix unitaires, textile et flocage compris</caption>
+      <thead>
+        <tr><th scope="col">Produit</th><th scope="col">1 à 9</th><th scope="col">10 à 49</th><th scope="col">50 et +</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">T-shirt coton 180g</th><td>4&nbsp;500&nbsp;FCFA</td><td>4&nbsp;050&nbsp;FCFA</td><td>3&nbsp;600&nbsp;FCFA</td></tr>
+        <tr><th scope="row">Polo piqué</th><td>7&nbsp;500&nbsp;FCFA</td><td>6&nbsp;750&nbsp;FCFA</td><td>6&nbsp;000&nbsp;FCFA</td></tr>
+        <tr><th scope="row">Sweat molletonné</th><td>12&nbsp;000&nbsp;FCFA</td><td>10&nbsp;800&nbsp;FCFA</td><td>9&nbsp;600&nbsp;FCFA</td></tr>
+        <tr><th scope="row">Casquette brodée</th><td>5&nbsp;000&nbsp;FCFA</td><td>4&nbsp;500&nbsp;FCFA</td><td>4&nbsp;000&nbsp;FCFA</td></tr>
+      </tbody>
+    </table>
+  </noscript>
+
+  <section class="note">
+    <h2 class="note__titre">Bon à savoir</h2>
+    <ul class="note__liste">
+      <li>Les remises s’appliquent par produit : 10&nbsp;% dès 10 pièces, 20&nbsp;% dès 50 pièces.</li>
+      <li>Les tailles peuvent être mélangées à l’intérieur d’une même commande sans perdre la remise.</li>
+      <li>Prix indicatifs. Le devis définitif est confirmé sur WhatsApp, une fois votre visuel reçu.</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer class="pied">
+  <div class="conteneur">
+    <p class="pied__marque">DK&nbsp;Print — flocage et personnalisation textile, Dakar</p>
+    <p class="pied__mention">Prix en francs CFA, textile et flocage compris.</p>
+  </div>
+</footer>
+
+<script src="js/catalogue.js"></script>
+</body>
+</html>
