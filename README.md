@@ -101,26 +101,32 @@ haut des pages. Il disparaît de lui-même une fois le numéro renseigné.
 
 ## Les images
 
-Les photos fournies ont été recadrées au format 4/5 (vertical, adapté aux
-vêtements sur cintre), leur liseré rouge retiré, et réencodées en WebP.
-Chacune pèse moins de 20 Ko.
+Les photos fournies ont été recadrées, détourées sur leur fond, complétées
+au format vertical 4/5 et réencodées en WebP. Chacune pèse moins de 25 Ko.
 
 | Fichier | Où |
 |---|---|
 | `tshirt.webp` | Carte t-shirt du catalogue |
+| `polo.webp` | Carte polo du catalogue |
+| `sweat.webp` | Carte sweat du catalogue |
+| `casquette.webp` | Carte casquette du catalogue |
 | `realisation-veste.webp` | Galerie de l'accueil |
 | `realisation-tshirt-gris.webp` | Galerie de l'accueil |
 | `realisation-tshirt-bordeaux.webp` | Galerie de l'accueil |
 | `realisation-tshirt-kaki.webp` | Galerie de l'accueil |
 
-**Il manque encore les photos du polo, du sweat et de la casquette** :
-ces trois cartes affichent toujours un dessin provisoire. Déposez la photo
-dans `img/` et changez la ligne `photo:` du produit dans `js/catalogue.js`.
+Pour remplacer une photo : déposez-la dans `img/` et changez la ligne
+`photo:` du produit dans `js/catalogue.js`. Format vertical 4/5,
+800 × 1000 px de préférence, en WebP.
 
-Pour préparer une photo : format vertical 4/5, 800 × 1000 px pour une carte
-produit, 600 × 750 px pour une vignette de réalisation, en WebP.
+Deux photos méritent d'être refaites quand vous en aurez l'occasion :
 
-Les coordonnées, le délai et l'acompte sont renseignés.
+- **le polo** : son fichier d'origine ne faisait que 447 px de côté, l'image
+  est donc un peu molle sur grand écran, et **un logo de marque tierce est
+  visible sur la poitrine** ;
+- **le sweat** : la photo montre un sweat à capuche zippé, la description du
+  produit a été mise en accord. Si vous vendez aussi un sweat à col rond, il
+  faudra une seconde fiche.
 
 ## Le visuel du client
 

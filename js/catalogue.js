@@ -26,8 +26,8 @@ var EMPLACEMENTS = ['Poitrine', 'Dos', 'Manche'];
 /* Les produits.
    'prix' est le prix unitaire PLEIN, celui du palier 1 à 9 pièces.
    Les prix des autres paliers sont calculés automatiquement.
-   'photo' : remplacez le fichier .svg par votre photo (.webp de
-   préférence, 800 × 600 px) et mettez le nom du fichier ici.        */
+   'photo' : le fichier image du produit, dans img/. Format vertical
+   4/5 — par exemple 800 × 1000 px — en WebP.                        */
 var PRODUITS = [
   {
     id: 'tshirt',
@@ -41,8 +41,8 @@ var PRODUITS = [
       { nom: 'Noir',       hex: '#1a1a1a' },
       { nom: 'Gris chiné', hex: '#9aa0a6' },
       { nom: 'Marine',     hex: '#1f3864' },
-      { nom: 'Rouge',      hex: '#c0392b' },
-      { nom: 'Vert',       hex: '#2e7d4f' }
+      { nom: 'Bordeaux',   hex: '#7a1f2e' },
+      { nom: 'Kaki',       hex: '#7a6d3f' }
     ]
   },
   {
@@ -50,22 +50,22 @@ var PRODUITS = [
     nom: 'Polo piqué',
     description: 'Maille piquée respirante, col et poignets côtelés. Idéal pour les tenues professionnelles.',
     prix: 7500,
-    photo: 'img/polo.svg',
+    photo: 'img/polo.webp',
     tailles: ['S', 'M', 'L', 'XL', 'XXL'],
     couleurs: [
-      { nom: 'Blanc',    hex: '#ffffff' },
-      { nom: 'Noir',     hex: '#1a1a1a' },
-      { nom: 'Marine',   hex: '#1f3864' },
-      { nom: 'Bordeaux', hex: '#6d2136' },
-      { nom: 'Ciel',     hex: '#7fb3d5' }
+      { nom: 'Marine',     hex: '#1f3864' },
+      { nom: 'Blanc',      hex: '#ffffff' },
+      { nom: 'Noir',       hex: '#1a1a1a' },
+      { nom: 'Gris chiné', hex: '#9aa0a6' },
+      { nom: 'Bordeaux',   hex: '#6d2136' }
     ]
   },
   {
     id: 'sweat',
     nom: 'Sweat molletonné',
-    description: 'Molleton gratté, col rond, bords côtelés. Pour les saisons fraîches et les tenues de club.',
+    description: 'Sweat à capuche zippé, molleton gratté, poche kangourou. Pour les saisons fraîches et les tenues de club.',
     prix: 12000,
-    photo: 'img/sweat.svg',
+    photo: 'img/sweat.webp',
     tailles: ['S', 'M', 'L', 'XL', 'XXL'],
     couleurs: [
       { nom: 'Noir',       hex: '#1a1a1a' },
@@ -79,7 +79,7 @@ var PRODUITS = [
     nom: 'Casquette brodée',
     description: 'Casquette 6 panneaux, visière préformée, fermeture réglable. Personnalisation en broderie.',
     prix: 5000,
-    photo: 'img/casquette.svg',
+    photo: 'img/casquette.webp',
     tailles: ['Taille unique réglable'],
     couleurs: [
       { nom: 'Noir',   hex: '#1a1a1a' },
