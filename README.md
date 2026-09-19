@@ -53,33 +53,35 @@ Les fichiers de `img/` sont des dessins provisoires. Pour mettre vos photos :
 3. Dans `js/catalogue.js`, remplacez par exemple
    `photo: 'img/tshirt.svg'` par `photo: 'img/tshirt.webp'`.
 
-## Activer les boutons de commande
+## Changer le numéro WhatsApp
 
-Dans `js/site.js`, remplacez la valeur de `WHATSAPP` par votre numéro
-au format international, sans `+` ni espaces, ainsi que `TELEPHONE_AFFICHE`,
-qui est le même numéro tel qu'il s'affiche à l'écran :
+Il est renseigné. Pour en changer, modifiez `js/site.js` : `WHATSAPP` au
+format international sans `+` ni espaces, et `TELEPHONE_AFFICHE`, le même
+numéro tel qu'il doit s'afficher à l'écran.
 
 ```js
-var WHATSAPP = '221771234567';
-var TELEPHONE_AFFICHE = '+221 77 123 45 67';
+var WHATSAPP = '221771236367';
+var TELEPHONE_AFFICHE = '+221 77 123 63 67';
 ```
 
 Le numéro n'est écrit qu'à cet endroit : tous les boutons du site, sur toutes
-les pages, s'y alimentent.
+les pages, s'y alimentent. Pensez aussi au bloc `<noscript>` de la section
+« Nous joindre » dans `index.html`, qui le répète en clair.
 
-Tant que ce numéro n'est pas renseigné, un bandeau d'avertissement s'affiche
-en haut de la page. Il disparaît tout seul une fois le numéro corrigé.
+Si `WHATSAPP` contient encore un `X`, un bandeau d'avertissement s'affiche en
+haut des pages. Il disparaît de lui-même une fois le numéro renseigné.
 
-## À compléter sur la page d'accueil
+## À compléter
 
-Trois informations manquent, faute de les avoir. Elles sont repérables
-dans `index.html` :
+Il ne reste que les images. Toutes sont des dessins provisoires :
 
-- le délai de fabrication et le montant de l'acompte, notés `[à confirmer]`
-  dans les questions fréquentes ;
-- l'adresse et les horaires de l'atelier, dans la section « Nous joindre »,
-  en italique ;
-- les photos de réalisations, toutes provisoirement `img/realisation.svg`.
+- les quatre visuels produits du catalogue (`img/tshirt.svg`, `polo.svg`,
+  `sweat.svg`, `casquette.svg`) ;
+- les quatre vignettes de réalisations sur l'accueil, qui pointent toutes
+  vers `img/realisation.svg`. Donnez à chacune sa propre photo en modifiant
+  les `src` dans `index.html`.
+
+Les coordonnées, le délai et l'acompte sont renseignés.
 
 ## Le visuel du client
 

@@ -387,7 +387,8 @@ a:focus-visible, .bouton:focus-visible {
 .contact__titre { margin: 0 0 8px; font-size: 18px; }
 .contact__bloc p { margin: 0 0 10px; color: var(--encre-doux); font-size: 15px; }
 .contact__numero { font-size: 20px; font-weight: 700; color: var(--encre) !important; }
-.contact__aremplir { font-style: italic; }
+.contact__adresse { font-weight: 600; color: var(--encre) !important; }
+.contact__horaires { font-weight: 600; color: var(--encre) !important; }
 .contact__bloc .bouton { margin-top: 4px; }
 
 /* --- À partir de 720 px -------------------------------------------------- */

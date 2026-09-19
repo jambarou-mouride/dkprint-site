@@ -11,10 +11,10 @@
 
 /* Numéro WhatsApp au format international, sans + ni espaces.
    Exemple pour le 77 123 45 67 à Dakar : '221771234567'            */
-var WHATSAPP = '221XXXXXXXXX';            /* <<< À REMPLACER */
+var WHATSAPP = '221771236367';
 
 /* Le même numéro, tel qu'il doit s'afficher à l'écran.             */
-var TELEPHONE_AFFICHE = '+221 77 XXX XX XX';   /* <<< À REMPLACER */
+var TELEPHONE_AFFICHE = '+221 77 123 63 67';
 
 /* -------------------------------------------------------------------------
    2. OUTILS COMMUNS — inutile d'y toucher
