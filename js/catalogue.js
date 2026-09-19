@@ -1,18 +1,15 @@
 /* =========================================================================
-   DK Print — Catalogue
+   DK Print — Catalogue produits
    =========================================================================
-   Ce fichier contient TOUTES les informations modifiables du catalogue.
-   Pour changer un prix, une taille, une couleur ou une photo, il suffit
-   de modifier la section « DONNÉES » ci-dessous. Ne touchez pas au reste.
+   Ce fichier contient les produits et les prix. Pour changer un prix, une
+   taille, une couleur ou une photo, modifiez la section « DONNÉES ».
+   Vos coordonnées, elles, sont dans js/site.js.
+   Ce fichier a besoin de js/site.js, qui doit être chargé avant lui.
    ========================================================================= */
 
 /* -------------------------------------------------------------------------
    1. DONNÉES — la partie que vous modifiez
    ------------------------------------------------------------------------- */
-
-/* Votre numéro WhatsApp, au format international, sans + ni espaces.
-   Exemple pour le 77 123 45 67 à Dakar : '221771234567'            */
-var WHATSAPP = '221XXXXXXXXX';   /* <<< À REMPLACER */
 
 /* Les paliers dégressifs, appliqués à tous les produits.
    'remise' est un pourcentage retiré du prix unitaire plein.        */
@@ -94,42 +91,22 @@ var PRODUITS = [
    2. AFFICHAGE — inutile d'y toucher
    ------------------------------------------------------------------------- */
 
-/* 12500 devient « 12 500 FCFA », avec des espaces insécables pour que
-   le montant ne soit jamais coupé en fin de ligne.                  */
-/* Espace insécable : le séparateur de milliers, et l'espace avant FCFA.
-   Écrit sous forme de code pour rester visible dans l'éditeur. */
-var ESPACE_INSECABLE = String.fromCharCode(160);
-
-function formatPrix(montant) {
-  var s = String(Math.round(montant)).replace(/\B(?=(\d{3})+(?!\d))/g, ESPACE_INSECABLE);
-  return s + ESPACE_INSECABLE + 'FCFA';
-}
-
 /* Prix d'un palier, arrondi aux 50 FCFA les plus proches. */
 function prixPalier(prixPlein, remise) {
   return Math.round(prixPlein * (1 - remise / 100) / 50) * 50;
 }
 
-/* Lien WhatsApp pré-rempli pour un produit donné. */
-function lienWhatsApp(produit) {
-  var message =
-    'Bonjour DK Print, je souhaite un devis pour du flocage.\n\n' +
-    'Produit : ' + produit.nom + '\n' +
-    'Quantité : \n' +
-    'Tailles : \n' +
-    'Couleur : \n\n' +
-    'Je vous envoie mon visuel juste après dans cette conversation.';
-  return 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(message);
+/* Le message WhatsApp pré-rempli pour un produit donné. */
+function messageProduit(produit) {
+  return 'Bonjour DK Print, je souhaite un devis pour du flocage.\n\n' +
+         'Produit : ' + produit.nom + '\n' +
+         'Quantité : \n' +
+         'Tailles : \n' +
+         'Couleur : \n\n' +
+         'Je vous envoie mon visuel juste après dans cette conversation.';
 }
 
-function elem(balise, classe, texte) {
-  var n = document.createElement(balise);
-  if (classe) { n.className = classe; }
-  if (texte)  { n.textContent = texte; }
-  return n;
-}
-
-/* Construit la carte d'un produit. */
+/* Construit la carte complète d'un produit, pour la page catalogue. */
 function carteProduit(produit, index) {
   var carte = elem('article', 'carte');
 
@@ -164,9 +141,8 @@ function carteProduit(produit, index) {
     li.appendChild(elem('span', 'paliers__qte', palier.libelle));
     var prix = elem('span', 'paliers__prix', formatPrix(prixPalier(produit.prix, palier.remise)));
     if (palier.remise > 0) {
-      var badge = elem('span', 'paliers__remise',
-        String.fromCharCode(8722) + palier.remise + ESPACE_INSECABLE + '%');
-      prix.appendChild(badge);
+      prix.appendChild(elem('span', 'paliers__remise',
+        String.fromCharCode(8722) + palier.remise + ESPACE_INSECABLE + '%'));
     }
     li.appendChild(prix);
     paliers.appendChild(li);
@@ -201,7 +177,7 @@ function carteProduit(produit, index) {
   /* Bouton de commande */
   var bouton = document.createElement('a');
   bouton.className = 'bouton bouton--commande';
-  bouton.href = lienWhatsApp(produit);
+  bouton.href = lienWhatsApp(messageProduit(produit));
   bouton.rel = 'noopener';
   bouton.textContent = 'Commander sur WhatsApp';
   bouton.setAttribute('aria-label', 'Commander ' + produit.nom + ' sur WhatsApp');
@@ -211,23 +187,36 @@ function carteProduit(produit, index) {
   return carte;
 }
 
+/* Page catalogue : la grille complète. */
 function afficherCatalogue() {
   var grille = document.getElementById('catalogue');
   if (!grille) { return; }
-
   var fragment = document.createDocumentFragment();
   PRODUITS.forEach(function (produit, index) {
     fragment.appendChild(carteProduit(produit, index));
   });
   grille.appendChild(fragment);
-
-  /* Rappel visible tant que le vrai numéro WhatsApp n'est pas renseigné.
-     Il disparaît tout seul dès que la variable WHATSAPP est corrigée.  */
-  if (WHATSAPP.indexOf('X') !== -1) {
-    var avis = elem('p', 'avis-config',
-      'Configuration à terminer : remplacez le numéro WhatsApp dans js/catalogue.js pour activer les boutons de commande.');
-    document.querySelector('main').insertBefore(avis, grille);
-  }
 }
 
-document.addEventListener('DOMContentLoaded', afficherCatalogue);
+/* Page d'accueil : la bande « à partir de », alimentée par les mêmes
+   données, pour que les prix ne puissent pas diverger d'une page à l'autre. */
+function afficherApercuTarifs() {
+  var bande = document.getElementById('apercu-tarifs');
+  if (!bande) { return; }
+  var fragment = document.createDocumentFragment();
+  PRODUITS.forEach(function (produit) {
+    var lien = document.createElement('a');
+    lien.className = 'tarif';
+    lien.href = 'catalogue.html';
+    lien.appendChild(elem('span', 'tarif__nom', produit.nom));
+    lien.appendChild(elem('span', 'tarif__mention', 'à partir de'));
+    lien.appendChild(elem('span', 'tarif__prix', formatPrix(produit.prix)));
+    fragment.appendChild(lien);
+  });
+  bande.appendChild(fragment);
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  afficherCatalogue();
+  afficherApercuTarifs();
+});

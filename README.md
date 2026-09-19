@@ -8,10 +8,14 @@ et s'héberge tel quel (GitHub Pages, ou n'importe quel hébergeur).
 
 | Fichier | Rôle |
 |---|---|
+| `index.html` | La page d'accueil |
 | `catalogue.html` | La page catalogue et tarifs |
 | `css/style.css` | Toute la mise en forme du site |
-| `js/catalogue.js` | **Les produits et les prix** — le fichier à modifier |
-| `img/` | Les visuels des produits |
+| `js/site.js` | **Vos coordonnées** — numéro WhatsApp et téléphone affiché |
+| `js/catalogue.js` | **Les produits et les prix** |
+| `img/` | Les visuels |
+
+`js/site.js` doit toujours être chargé avant `js/catalogue.js`.
 
 ## Modifier les prix
 
@@ -26,9 +30,10 @@ par produit.
 Pour changer une remise, modifiez `PALIERS` : la nouvelle remise s'applique
 d'un coup à tous les produits.
 
-> Si vous modifiez un prix, reportez-le aussi dans le tableau `<noscript>`
-> de `catalogue.html`. Ce tableau n'est vu que par les visiteurs dont le
-> navigateur bloque JavaScript, mais il doit rester exact.
+> Si vous modifiez un prix, reportez-le aussi dans les deux blocs
+> `<noscript>` : le tableau de `catalogue.html` et la ligne de `index.html`.
+> Ils ne sont vus que par les visiteurs dont le navigateur bloque
+> JavaScript, mais ils doivent rester exacts.
 
 ## Remplacer les visuels
 
@@ -42,17 +47,33 @@ Les fichiers de `img/` sont des dessins provisoires. Pour mettre vos photos :
 
 ## Activer les boutons de commande
 
-Dans `js/catalogue.js`, remplacez la valeur de `WHATSAPP` par votre numéro
-au format international, sans `+` ni espaces :
+Dans `js/site.js`, remplacez la valeur de `WHATSAPP` par votre numéro
+au format international, sans `+` ni espaces, ainsi que `TELEPHONE_AFFICHE`,
+qui est le même numéro tel qu'il s'affiche à l'écran :
 
 ```js
-var WHATSAPP = '221771234567';   // pour le 77 123 45 67
+var WHATSAPP = '221771234567';
+var TELEPHONE_AFFICHE = '+221 77 123 45 67';
 ```
+
+Le numéro n'est écrit qu'à cet endroit : tous les boutons du site, sur toutes
+les pages, s'y alimentent.
 
 Tant que ce numéro n'est pas renseigné, un bandeau d'avertissement s'affiche
 en haut de la page. Il disparaît tout seul une fois le numéro corrigé.
 
+## À compléter sur la page d'accueil
+
+Trois informations manquent, faute de les avoir. Elles sont repérables
+dans `index.html` :
+
+- le délai de fabrication et le montant de l'acompte, notés `[à confirmer]`
+  dans les questions fréquentes ;
+- l'adresse et les horaires de l'atelier, dans la section « Nous joindre »,
+  en italique ;
+- les photos de réalisations, toutes provisoirement `img/realisation.svg`.
+
 ## Reste à construire
 
-- `index.html` — la page vitrine (accroche, prestations, process, contact)
-- `commander.html` — le configurateur de commande avec aperçu du visuel
+- `commander.html` — le configurateur de commande avec aperçu du visuel.
+  D'ici là, le bouton « Commander » de la navigation ouvre WhatsApp.

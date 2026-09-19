@@ -232,3 +232,176 @@ a:focus-visible, .bouton:focus-visible {
   .grille { grid-template-columns: 1fr 1fr; gap: 22px; }
   .titre-page { font-size: 38px; margin-top: 36px; }
 }
+
+/* =========================================================================
+   Page d'accueil
+   ========================================================================= */
+
+/* --- Bouton de navigation ---------------------------------------------- */
+
+.nav__bouton {
+  background: var(--accent);
+  color: #fff !important;
+  border-radius: 7px;
+  padding: 5px 13px !important;
+  font-weight: 600;
+}
+.nav__bouton:hover, .nav__bouton:focus { background: var(--accent-fonce); }
+
+/* --- Accroche ----------------------------------------------------------- */
+
+.heros {
+  background: var(--encre);
+  color: #fff;
+  padding: 40px 0 44px;
+}
+.heros__titre {
+  margin: 0 0 14px;
+  font-size: 29px;
+  line-height: 1.18;
+  max-width: 18ch;
+}
+.heros__texte {
+  margin: 0 0 24px;
+  color: #c6d2dd;
+  font-size: 17px;
+  max-width: 54ch;
+}
+.heros__actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; }
+.heros__actions .bouton { margin-top: 0; flex: 1 1 260px; }
+
+.bouton--principal { background: var(--accent); color: #fff; }
+.bouton--principal:hover, .bouton--principal:focus { background: var(--accent-fonce); }
+
+/* --- Sections ----------------------------------------------------------- */
+
+.section { padding: 34px 0; }
+.section-fond { background: #f3ede5; border-top: 1px solid var(--trait); border-bottom: 1px solid var(--trait); }
+.section__titre { font-size: 24px; margin: 0 0 18px; }
+.section__note { color: var(--encre-doux); font-size: 15px; margin: 14px 0 0; max-width: 62ch; }
+
+/* --- Bande de tarifs ---------------------------------------------------- */
+
+.tarifs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.tarif {
+  display: block;
+  background: var(--carte);
+  border: 1px solid var(--trait);
+  border-radius: var(--rayon);
+  padding: 13px 14px;
+  text-decoration: none;
+  color: inherit;
+}
+.tarif:hover, .tarif:focus { border-color: var(--accent); }
+.tarif__nom { display: block; font-weight: 600; font-size: 15px; margin-bottom: 5px; }
+.tarif__mention { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--encre-doux); }
+.tarif__prix { display: block; font-size: 20px; font-weight: 700; color: var(--accent-fonce); white-space: nowrap; }
+
+/* --- Prestations -------------------------------------------------------- */
+
+.prestations { display: grid; grid-template-columns: 1fr; gap: 14px; }
+.prestation {
+  background: var(--carte);
+  border: 1px solid var(--trait);
+  border-radius: var(--rayon);
+  padding: 16px 18px;
+}
+.prestation__titre { margin: 0 0 6px; font-size: 18px; }
+.prestation p { margin: 0; color: var(--encre-doux); font-size: 15px; }
+
+/* --- Étapes ------------------------------------------------------------- */
+
+.etapes { list-style: none; counter-reset: etape; margin: 0; padding: 0; display: grid; gap: 14px; }
+.etape { counter-increment: etape; position: relative; padding-left: 52px; }
+.etape::before {
+  content: counter(etape);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.etape__titre { margin: 4px 0 4px; font-size: 18px; }
+.etape p { margin: 0; color: var(--encre-doux); font-size: 15px; }
+
+/* --- Galerie ------------------------------------------------------------ */
+
+.galerie { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.galerie__item {
+  background: var(--carte);
+  border: 1px solid var(--trait);
+  border-radius: var(--rayon);
+  overflow: hidden;
+}
+.galerie__item img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.galerie__legende { display: block; padding: 8px 10px; font-size: 14px; font-weight: 600; }
+
+/* --- Questions fréquentes ----------------------------------------------- */
+
+.faq {
+  background: var(--carte);
+  border: 1px solid var(--trait);
+  border-radius: var(--rayon);
+  margin-bottom: 8px;
+  padding: 0 16px;
+}
+.faq__question {
+  cursor: pointer;
+  font-weight: 600;
+  padding: 13px 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.faq__question::-webkit-details-marker { display: none; }
+.faq__question::after {
+  content: '+';
+  color: var(--accent);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+  flex: none;
+}
+.faq[open] .faq__question::after { content: '\2212'; }
+.faq__reponse { margin: 0 0 14px; color: var(--encre-doux); font-size: 15px; max-width: 66ch; }
+
+/* --- Contact ------------------------------------------------------------ */
+
+.contact { display: grid; grid-template-columns: 1fr; gap: 14px; }
+.contact__bloc {
+  background: var(--carte);
+  border: 1px solid var(--trait);
+  border-radius: var(--rayon);
+  padding: 16px 18px;
+}
+.contact__titre { margin: 0 0 8px; font-size: 18px; }
+.contact__bloc p { margin: 0 0 10px; color: var(--encre-doux); font-size: 15px; }
+.contact__numero { font-size: 20px; font-weight: 700; color: var(--encre) !important; }
+.contact__aremplir { font-style: italic; }
+.contact__bloc .bouton { margin-top: 4px; }
+
+/* --- À partir de 720 px -------------------------------------------------- */
+
+@media (min-width: 720px) {
+  .heros { padding: 60px 0 64px; }
+  .heros__titre { font-size: 44px; }
+  .heros__texte { font-size: 19px; }
+  .heros__actions .bouton { flex: 0 0 auto; }
+  .section { padding: 44px 0; }
+  .section__titre { font-size: 29px; }
+  .tarifs { grid-template-columns: repeat(4, 1fr); }
+  .prestations { grid-template-columns: 1fr 1fr; }
+  .etapes { grid-template-columns: 1fr 1fr; gap: 20px 28px; }
+  .galerie { grid-template-columns: repeat(4, 1fr); }
+  .contact { grid-template-columns: 1fr 1fr; gap: 20px; }
+}
