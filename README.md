@@ -35,13 +35,41 @@ automatiquement à partir des remises définies dans `PALIERS`, et arrondis
 aux 50 FCFA les plus proches. Vous n'avez donc qu'un seul chiffre à changer
 par produit.
 
-Pour changer une remise, modifiez `PALIERS` : la nouvelle remise s'applique
-d'un coup à tous les produits.
+Pour changer une remise ou un seuil, modifiez `PALIERS`. Chaque palier a
+un `min`, la quantité à partir de laquelle il s'applique, et une `remise`
+en pourcentage :
+
+```js
+{ libelle: '10 à 49 pièces', min: 10, remise: 10 }
+```
+
+Le changement vaut d'un coup pour tous les produits, dans le tableau des
+tarifs comme dans le configurateur. Si vous touchez à `min`, pensez à
+mettre `libelle` en accord : c'est lui qui s'affiche.
 
 > Si vous modifiez un prix, reportez-le aussi dans les deux blocs
 > `<noscript>` : le tableau de `catalogue.html` et la ligne de `index.html`.
 > Ils ne sont vus que par les visiteurs dont le navigateur bloque
 > JavaScript, mais ils doivent rester exacts.
+
+## Le configurateur des fiches produits
+
+Chaque fiche du catalogue porte un configurateur : taille, couleur,
+quantité, emplacement du flocage, et texte à floquer ou logo fourni. Le
+total se recalcule à chaque changement, avec le détail du calcul sous le
+prix, et le message WhatsApp reprend toute la configuration.
+
+Le calcul tient en une fonction, `calculer()` dans `js/catalogue.js`. La
+remise y est déduite du prix unitaire **déjà arrondi**, ce qui garantit que
+le détail affiché tombe juste : sous-total moins remise égale toujours le
+total, sans écart d'arrondi.
+
+**L'emplacement du flocage ne change pas le prix.** Aucun supplément n'a
+été défini pour un deuxième ou un troisième emplacement. Pour en ajouter
+un, il faudra une règle de calcul supplémentaire.
+
+Pour modifier les emplacements proposés, la liste `EMPLACEMENTS` est en
+haut de `js/catalogue.js`.
 
 ## Remplacer les visuels
 

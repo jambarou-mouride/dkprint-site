@@ -176,7 +176,7 @@ function decrireArticle(article) {
     return l.taille + ' × ' + l.nombre;
   }).join(', ');
   var titre = article.nom + (article.couleur ? ' – ' + article.couleur : '');
-  return '- ' + titre + ' : ' + tailles + ' (' + article.total + ' pièces)';
+  return '- ' + titre + ' : ' + tailles + ' (' + pieces(article.total) + ')';
 }
 
 function messageCommande(commande) {
@@ -184,7 +184,7 @@ function messageCommande(commande) {
 
   lignes.push('ARTICLES');
   commande.articles.forEach(function (a) { lignes.push(decrireArticle(a)); });
-  lignes.push('Total : ' + commande.totalPieces + ' pièces');
+  lignes.push('Total : ' + pieces(commande.totalPieces));
   lignes.push('');
 
   lignes.push('FLOCAGE');
@@ -223,7 +223,7 @@ function majCompteurs(commande) {
     var compteur = bloc.querySelector('.article__compteur');
     var trouve = null;
     commande.articles.forEach(function (a) { if (a.nom === produit.nom) { trouve = a; } });
-    compteur.textContent = trouve ? trouve.total + ' pièces' : '';
+    compteur.textContent = trouve ? pieces(trouve.total) : '';
     compteur.hidden = !trouve;
   });
 }
@@ -251,7 +251,7 @@ function majRecap() {
     var tailles = a.lignes.map(function (l) { return l.taille + ' × ' + l.nombre; }).join(', ');
     zone.appendChild(ligneRecap(a.nom + (a.couleur ? ' – ' + a.couleur : ''), tailles));
   });
-  zone.appendChild(ligneRecap('Total', commande.totalPieces + ' pièces'));
+  zone.appendChild(ligneRecap('Total', pieces(commande.totalPieces)));
   if (commande.emplacements.length) {
     zone.appendChild(ligneRecap('Emplacement', commande.emplacements.join(' + ')));
   }

@@ -43,6 +43,11 @@ function messageGeneral() {
          'Je vous envoie mon visuel juste après dans cette conversation.';
 }
 
+/* « 1 pièce », « 12 pièces » : l'accord du pluriel, une bonne fois. */
+function pieces(n) {
+  return n + ' pièce' + (n > 1 ? 's' : '');
+}
+
 function elem(balise, classe, texte) {
   var n = document.createElement(balise);
   if (classe) { n.className = classe; }
