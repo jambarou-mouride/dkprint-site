@@ -10,12 +10,20 @@ et s'héberge tel quel (GitHub Pages, ou n'importe quel hébergeur).
 |---|---|
 | `index.html` | La page d'accueil |
 | `catalogue.html` | La page catalogue et tarifs |
+| `commander.html` | Le formulaire de préparation de commande |
 | `css/style.css` | Toute la mise en forme du site |
 | `js/site.js` | **Vos coordonnées** — numéro WhatsApp et téléphone affiché |
 | `js/catalogue.js` | **Les produits et les prix** |
+| `js/commande.js` | Le formulaire de commande et le message WhatsApp |
 | `img/` | Les visuels |
 
-`js/site.js` doit toujours être chargé avant `js/catalogue.js`.
+L'ordre de chargement compte : `js/site.js`, puis `js/catalogue.js`, puis
+`js/commande.js`.
+
+Le formulaire de commande se construit tout seul à partir des produits de
+`js/catalogue.js` : un produit ajouté au catalogue apparaît automatiquement
+dans le formulaire, avec ses tailles et ses couleurs. Il n'y a rien à
+modifier dans `commander.html`.
 
 ## Modifier les prix
 
@@ -73,7 +81,13 @@ dans `index.html` :
   en italique ;
 - les photos de réalisations, toutes provisoirement `img/realisation.svg`.
 
-## Reste à construire
+## Le visuel du client
 
-- `commander.html` — le configurateur de commande avec aperçu du visuel.
-  D'ici là, le bouton « Commander » de la navigation ouvre WhatsApp.
+La page de commande affiche un aperçu du fichier choisi et prévient si
+l'image fait moins de 1 500 pixels de large. **Ce fichier ne quitte jamais
+l'appareil du client** : il est seulement lu par son navigateur. C'est lui
+qui le joint ensuite dans la conversation WhatsApp, un lien WhatsApp ne
+pouvant pas transporter de fichier.
+
+Pour changer le seuil d'alerte, modifiez `LARGEUR_MINIMALE` en haut de
+`js/commande.js`.

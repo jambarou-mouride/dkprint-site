@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Commander — DK Print, flocage textile à Dakar</title>
+<meta name="description" content="Préparez votre commande de textiles personnalisés : articles, tailles, emplacement du flocage et visuel. La demande part ensuite sur WhatsApp.">
+<meta property="og:title" content="Commander — DK Print">
+<meta property="og:description" content="Préparez votre commande de flocage à Dakar, puis envoyez-la sur WhatsApp.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="entete">
+  <div class="conteneur entete__barre">
+    <a class="logo" href="index.html">
+      <span class="logo__marque">DK&nbsp;Print</span>
+      <span class="logo__metier">Flocage textile · Dakar</span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="index.html">Accueil</a>
+      <a href="catalogue.html">Catalogue</a>
+      <a class="nav__actif" href="commander.html" aria-current="page">Commander</a>
+    </nav>
+  </div>
+</header>
+
+<main class="conteneur">
+
+  <h1 class="titre-page">Préparer votre commande</h1>
+  <p class="chapo">
+    Remplissez ce qui vous concerne, le reste peut attendre. À la fin, votre demande
+    s’ouvre dans WhatsApp, déjà rédigée : vous n’avez plus qu’à l’envoyer et à joindre
+    votre visuel.
+  </p>
+
+  <noscript>
+    <p class="avis-config">
+      Cette page a besoin de JavaScript pour préparer votre commande.
+      Écrivez-nous directement sur WhatsApp, nous ferons le tour ensemble.
+    </p>
+  </noscript>
+
+  <form id="commande" class="formulaire" novalidate>
+
+    <!-- ===== 1. Les articles ===== -->
+    <section class="etape-form">
+      <h2 class="etape-form__titre"><span class="etape-form__num">1</span> Vos articles</h2>
+      <p class="etape-form__aide">
+        Indiquez les quantités taille par taille. Vous pouvez commander plusieurs
+        articles différents dans la même demande.
+      </p>
+      <div id="articles"></div>
+    </section>
+
+    <!-- ===== 2. Le flocage ===== -->
+    <section class="etape-form">
+      <h2 class="etape-form__titre"><span class="etape-form__num">2</span> Le flocage</h2>
+
+      <fieldset class="champ">
+        <legend class="champ__label">Où placer le flocage ?</legend>
+        <ul class="puces-choix">
+          <li><label class="choix"><input type="checkbox" name="emplacement" value="Poitrine"> Poitrine</label></li>
+          <li><label class="choix"><input type="checkbox" name="emplacement" value="Dos"> Dos</label></li>
+          <li><label class="choix"><input type="checkbox" name="emplacement" value="Cœur"> Cœur</label></li>
+          <li><label class="choix"><input type="checkbox" name="emplacement" value="Manche gauche"> Manche gauche</label></li>
+          <li><label class="choix"><input type="checkbox" name="emplacement" value="Manche droite"> Manche droite</label></li>
+        </ul>
+      </fieldset>
+
+      <p class="champ">
+        <label class="champ__label" for="texte-flocage">Texte à floquer</label>
+        <span class="champ__aide">Nom, numéro, slogan. Laissez vide si votre visuel se suffit à lui-même.</span>
+        <input class="champ__saisie" type="text" id="texte-flocage" maxlength="120" autocomplete="off">
+      </p>
+
+      <p class="champ">
+        <label class="champ__label" for="couleur-flocage">Couleur du flocage</label>
+        <input class="champ__saisie" type="text" id="couleur-flocage" maxlength="60" autocomplete="off" placeholder="Blanc, doré, noir…">
+      </p>
+    </section>
+
+    <!-- ===== 3. Le visuel ===== -->
+    <section class="etape-form">
+      <h2 class="etape-form__titre"><span class="etape-form__num">3</span> Votre visuel</h2>
+      <p class="etape-form__aide">
+        Choisissez votre fichier pour en vérifier la qualité ici même. Il reste sur votre
+        appareil : rien n’est envoyé depuis cette page. Vous le joindrez dans la
+        conversation WhatsApp, à la fin.
+      </p>
+
+      <p class="champ">
+        <label class="champ__label" for="fichier-visuel">Votre fichier</label>
+        <input class="champ__saisie" type="file" id="fichier-visuel" accept="image/*,.pdf">
+      </p>
+
+      <div id="apercu-visuel" class="apercu" hidden></div>
+    </section>
+
+    <!-- ===== 4. Vos informations ===== -->
+    <section class="etape-form">
+      <h2 class="etape-form__titre"><span class="etape-form__num">4</span> Vous</h2>
+
+      <p class="champ">
+        <label class="champ__label" for="nom">Votre nom ou celui de votre structure</label>
+        <input class="champ__saisie" type="text" id="nom" maxlength="80" autocomplete="organization">
+      </p>
+
+      <p class="champ">
+        <label class="champ__label" for="date-souhaitee">Pour quelle date ?</label>
+        <span class="champ__aide">Si votre commande est liée à un événement, donnez-nous la date. Elle apparaîtra au format jour/mois/année dans votre demande.</span>
+        <input class="champ__saisie" type="date" id="date-souhaitee">
+      </p>
+
+      <p class="champ">
+        <label class="champ__label" for="remarques">Remarques</label>
+        <textarea class="champ__saisie" id="remarques" rows="3" maxlength="400"></textarea>
+      </p>
+    </section>
+
+    <!-- ===== Récapitulatif ===== -->
+    <section class="recap" aria-labelledby="recap-titre">
+      <h2 id="recap-titre" class="recap__titre">Votre demande</h2>
+      <div id="recap-contenu" class="recap__contenu" aria-live="polite"></div>
+      <a id="envoi" class="bouton bouton--commande bouton--inactif" role="button" aria-disabled="true">
+        Envoyer ma commande sur WhatsApp
+      </a>
+      <p class="recap__mention">
+        Les remises s’appliquent automatiquement selon la quantité. Le prix définitif
+        vous est confirmé sur WhatsApp, une fois votre visuel reçu.
+      </p>
+    </section>
+
+  </form>
+
+</main>
+
+<footer class="pied">
+  <div class="conteneur">
+    <p class="pied__marque">DK&nbsp;Print — flocage et personnalisation textile, Dakar</p>
+    <p class="pied__mention">Prix en francs CFA, textile et flocage compris.</p>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+<script src="js/catalogue.js"></script>
+<script src="js/commande.js"></script>
+</body>
+</html>
